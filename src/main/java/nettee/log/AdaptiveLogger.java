@@ -11,7 +11,6 @@ public class AdaptiveLogger {
 
     public AdaptiveLogger(Class<?> clazz) {
         this(
-                // (참고: 어차피 NPE 뜨는 위치라서 굳이 안 써도 됩니다만! 알고 있는 것도 좋습니다.)
                 Objects.requireNonNull(clazz, "...").getName()
         );
     }
@@ -22,10 +21,18 @@ public class AdaptiveLogger {
     }
 
     public static AdaptiveLogger getLogger(Class<?> clazz) {
-        return new AdaptiveLogger(clazz);
+        return CachedAdaptiveLogger.getLogger(clazz);
     }
 
     public static AdaptiveLogger getLogger(String className) {
+        return CachedAdaptiveLogger.getLogger(className);
+    }
+
+    public static AdaptiveLogger getLoggerNonCached(Class<?> clazz) {
+        return new AdaptiveLogger(clazz);
+    }
+
+    public static AdaptiveLogger getLoggerNonCached(String className) {
         return new AdaptiveLogger(className);
     }
 
