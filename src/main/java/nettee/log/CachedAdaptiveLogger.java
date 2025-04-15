@@ -23,12 +23,12 @@ public class CachedAdaptiveLogger extends AdaptiveLogger {
 
     public static AdaptiveLogger getLogger(String className) {
         Objects.requireNonNull(className);
-        return Holder.MAP.computeIfAbsent(className, (ignore) -> new CachedAdaptiveLogger(className));
+        return Holder.MAP.computeIfAbsent(className, CachedAdaptiveLogger::new);
     }
 
     @Override
     public LevelFixedLogger with(LogLevel level) {
-        return cache.computeIfAbsent(level, (ignore) -> super.with(level));
+        return cache.computeIfAbsent(level, super::with);
     }
 
     private static class Holder {
