@@ -8,11 +8,11 @@ public class CachedAdaptiveLogger extends AdaptiveLogger {
 
     private final Map<LogLevel, LevelFixedLogger> cache = new ConcurrentHashMap<>();
 
-    public CachedAdaptiveLogger(Class<?> clazz) {
+    private CachedAdaptiveLogger(Class<?> clazz) {
         super(clazz);
     }
 
-    public CachedAdaptiveLogger(String className) {
+    private CachedAdaptiveLogger(String className) {
         super(className);
     }
 
