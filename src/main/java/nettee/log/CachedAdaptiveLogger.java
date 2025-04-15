@@ -29,7 +29,6 @@ public class CachedAdaptiveLogger extends AdaptiveLogger {
     @Override
     public LevelFixedLogger with(LogLevel level) {
         return cache.computeIfAbsent(level, (ignore) -> super.with(level));
-
     }
 
     private static class Holder {
