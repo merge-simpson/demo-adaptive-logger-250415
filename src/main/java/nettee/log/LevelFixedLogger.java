@@ -46,30 +46,6 @@ public class LevelFixedLogger {
         }
     }
 
-    private static Consumer<String> getConsumer(Logger logger, LogLevel logLevel) {
-        return switch (logLevel) {
-            case TRACE -> logger::trace;
-            case DEBUG -> logger::debug;
-            case INFO ->  logger::info;
-            case WARN ->  logger::warn;
-            case ERROR -> logger::error;
-            case OFF -> (str) -> {};
-            default -> (str) -> {};
-        };
-    }
-
-    private static BiConsumer<String, Object[]> getBiConsumer(Logger logger, LogLevel logLevel) {
-        return switch (logLevel) {
-            case TRACE -> logger::trace;
-            case DEBUG -> logger::debug;
-            case INFO ->  logger::info;
-            case WARN ->  logger::warn;
-            case ERROR -> logger::error;
-            case OFF -> (str, args) -> {};
-            default -> (str, args) -> {};
-        };
-    }
-
     public void log(String message) {
         logConsumer.accept(message);
     }
