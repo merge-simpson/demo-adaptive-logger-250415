@@ -29,6 +29,10 @@ public class AdaptiveLogger {
         return new AdaptiveLogger(className);
     }
 
+    public LevelFixedLogger with(LogLevel level) {
+        return new LevelFixedLogger(logger, level);
+    }
+
     public Logger getLogger() {
         return logger;
     }
