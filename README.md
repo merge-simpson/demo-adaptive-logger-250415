@@ -23,3 +23,27 @@ nettee.cors:
 ```
 
 </details>
+
+# Features
+
+로깅 레벨을 선택하여 사용할 수 있는 로깅 객체를 제공합니다.
+
+```java
+// cached thread-safely
+var logger = AdaptiveLogger.getLogger(CurrentClassName.class)
+                .with(LogLevel.DEBUG);
+
+logger.log("이 로그를 DEBUG 레벨로 남깁니다.");
+logger.log("클래스 이름: {}", CurrentClassName.class.getName());
+```
+
+```java
+void foo() {
+    // not cached
+    var logger = AdaptiveLogger.getLoggerNonCached(CurrentClassName.class)
+            .with(LogLevel.DEBUG);
+
+    logger.log("이 로거는 캐싱 되지 않습니다.");
+    logger.log("예를 들어 지역변수에서만 잠시 사용할 때 이처럼 생성할 수 있습니다.");
+}
+```
